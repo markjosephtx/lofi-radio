@@ -32,7 +32,6 @@ function App() {
   const [currentTrack, setCurrentTrack] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [volume, setVolume] = useState(0.7);
-  const [bgIndex, setBgIndex] = useState(0);
   const audioRef = useRef(null);
 
   const handlePlayPause = () => {
@@ -60,10 +59,6 @@ function App() {
     handleNext();
   };
 
-  const handleBgChange = () => {
-    setBgIndex((prev) => (prev + 1) % backgrounds.length);
-  };
-
   const handleVolume = (e) => {
     setVolume(e.target.value);
     audioRef.current.volume = e.target.value;
@@ -74,14 +69,11 @@ function App() {
       className="min-h-screen w-full flex items-end justify-left bg-cover bg-center transition-all duration-700"
       style={{ backgroundImage: `url(${playlist[currentTrack].cover})` }}
     >
-      <div className="w-[320px] flex flex-col items-left pl-2 pb-2">
-        <button
-          className="mb-4 px-4 py-2 rounded bg-indigo-500 text-white hover:bg-indigo-600 transition"
-          onClick={handleBgChange}
-        >
-          Change Room: {backgrounds[bgIndex].name}
-        </button>
-    
+      <div id="crt-lines"></div>
+      <div id="darken"></div>
+      <div id="vignette"></div>
+
+      <div className="w-[320px] flex flex-col items-left pl-4 pb-4 z-6">
         <audio
           ref={audioRef}
           src={playlist[currentTrack].url}
@@ -93,17 +85,17 @@ function App() {
             className="text-2xl px-2 py-1 bg-transparent border-none"
             onClick={handlePrev}
             aria-label="Previous"
-          ><FaAnglesLeft size={28} className="text-white" /></button>
+          ><FaAnglesLeft size={28} className="text-white/60" /></button>
           <button
             className="text-2xl px-2 py-1 bg-transparent border-none"
             onClick={handlePlayPause}
             aria-label={isPlaying ? 'Pause' : 'Play'}
-          >{isPlaying ? <FaPause size={28} className="text-lime-300" /> : <FaPlay size={28} className="text-white" /> }</button>
+          >{isPlaying ? <FaPause size={28} className="text-lime-300/60" /> : <FaPlay size={28} className="text-white/60" /> }</button>
           <button
             className="text-2xl px-2 py-1 bg-transparent border-none"
             onClick={handleNext}
             aria-label="Next"
-          ><FaAnglesRight size={28} className="text-white" /> </button>
+          ><FaAnglesRight size={28} className="text-white/60" /> </button>
         </div>
         <input
           type="range"
@@ -112,15 +104,14 @@ function App() {
           step="0.01"
           value={volume}
           onChange={handleVolume}
-          className="w-full mb-2 accent-indigo-500"
+          className="w-full mb-2 accent-lime-500"
         />
-        <h2 className="text-xl font-bold mb-1">{playlist[currentTrack].title}</h2>
-        <p className="text-gray-700 dark:text-gray-300 mb-4">{playlist[currentTrack].artist}</p>
+        <h2 className="text-xl font-bold mb-1 text-white/60">{playlist[currentTrack].title}</h2>
         <div className="flex gap-2 mt-2 w-full">
           {playlist.map((track, idx) => (
             <button
               key={track.title}
-              className={`flex-1 h-2 rounded-full ${idx === currentTrack ? 'bg-indigo-500' : 'bg-gray-300'}`}
+              className={`flex-1 h-2 rounded-full ${idx === currentTrack ? 'bg-lime-500/60' : 'bg-gray-300/60'}`}
               onClick={() => { setCurrentTrack(idx); setIsPlaying(true); setTimeout(() => audioRef.current.play(), 100); }}
               aria-label={`Go to track ${track.title}`}
             />
