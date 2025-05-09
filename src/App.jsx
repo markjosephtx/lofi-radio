@@ -2,6 +2,8 @@ import { useState, useRef } from 'react';
 import playlist from './assets/playlist.json';
 import './App.css';
 import { FaPlay, FaPause, FaAnglesLeft, FaAnglesRight } from "react-icons/fa6";
+import { PiDotsThreeBold } from "react-icons/pi";
+import { CgLoadbarSound } from "react-icons/cg";
 
 function App() {
   const [currentTrack, setCurrentTrack] = useState(0);
@@ -48,7 +50,7 @@ function App() {
       <div id="darken"></div>
       <div id="vignette"></div>
 
-      <div className="w-[350px] flex flex-col items-left pl-10 pb-10 z-6 gap-2">
+      <div className="lg:w-[400px] w-[320px] flex flex-col items-left lg:pl-10 pl-6 lg:pb-10 pb-10 z-6 gap-2">
         <audio
           ref={audioRef}
           src={playlist[currentTrack].url}
@@ -79,14 +81,21 @@ function App() {
           step="0.01"
           value={volume}
           onChange={handleVolume}
-          className="w-full mb-2 accent-white shadow"
+          className="w-full mb-2 accent-white shadow hidden sm:block"
         />
-        <h2 className="text-xl font-bold pb-3 text-white hover:text-lime-200/90 shadow">{playlist[currentTrack].title}</h2>
+        <div className='flex flex-row items-center gap-1 pb-3'>
+        <button
+            className="text-2xl py-1 bg-transparent border-none"
+            onClick={handlePlayPause}
+            aria-label={isPlaying ? 'Pause' : 'Play'}
+          >{isPlaying ? <CgLoadbarSound size={24} className="text-lime-300/60 hover:text-white/60 shadow" /> : <PiDotsThreeBold size={22} className="text-white/60 hover:text-lime-200/60 shadow" /> }</button>
+          <h2 className="font-semibold text-white hover:text-lime-200/90 shadow lg:text-xl text-lg/4">{playlist[currentTrack].title}</h2>
+        </div>
         <div className="flex gap-2 mt-2 w-full pb-1">
           {playlist.map((track, idx) => (
             <button
               key={track.title}
-              className={`flex-1 h-2 rounded-full ${idx === currentTrack ? 'bg-lime-500/60 shadow' : 'bg-white/60 shadow'}`}
+              className={`lg;flex-1 w-12 h-2 rounded-full ${idx === currentTrack ? 'bg-lime-500/60 shadow' : 'bg-white/60 shadow'}`}
               onClick={() => { setCurrentTrack(idx); setIsPlaying(true); setTimeout(() => audioRef.current.play(), 100); }}
               aria-label={`Go to track ${track.title}`}
             />
