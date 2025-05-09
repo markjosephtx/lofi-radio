@@ -48,29 +48,29 @@ function App() {
       <div id="darken"></div>
       <div id="vignette"></div>
 
-      <div className="w-[320px] flex flex-col items-left pl-4 pb-4 z-6">
+      <div className="w-[350px] flex flex-col items-left pl-10 pb-10 z-6 gap-2">
         <audio
           ref={audioRef}
           src={playlist[currentTrack].url}
           onEnded={handleEnded}
           autoPlay={isPlaying}
         />
-        <div className="flex items-center gap-4 mb-4">
+        <div className="flex items-center gap-2 mb-4">
           <button
             className="text-2xl px-2 py-1 bg-transparent border-none"
             onClick={handlePrev}
             aria-label="Previous"
-          ><FaAnglesLeft size={28} className="text-white/60" /></button>
+          ><FaAnglesLeft size={28} className="text-white/60 hover:text-lime-200/60 shadow" /></button>
           <button
             className="text-2xl px-2 py-1 bg-transparent border-none"
             onClick={handlePlayPause}
             aria-label={isPlaying ? 'Pause' : 'Play'}
-          >{isPlaying ? <FaPause size={28} className="text-lime-300/60" /> : <FaPlay size={28} className="text-white/60" /> }</button>
+          >{isPlaying ? <FaPause size={28} className="text-lime-300/60 hover:text-white/60 shadow" /> : <FaPlay size={28} className="text-white/60 hover:text-lime-200/60 shadow" /> }</button>
           <button
             className="text-2xl px-2 py-1 bg-transparent border-none"
             onClick={handleNext}
             aria-label="Next"
-          ><FaAnglesRight size={28} className="text-white/60" /> </button>
+          ><FaAnglesRight size={28} className="text-white/60 hover:text-lime-200/60 shadow" /> </button>
         </div>
         <input
           type="range"
@@ -79,19 +79,20 @@ function App() {
           step="0.01"
           value={volume}
           onChange={handleVolume}
-          className="w-full mb-2 accent-lime-500"
+          className="w-full mb-2 accent-white shadow"
         />
-        <h2 className="text-xl font-bold mb-1 text-white/60">{playlist[currentTrack].title}</h2>
-        <div className="flex gap-2 mt-2 w-full">
+        <h2 className="text-xl font-bold pb-3 text-white hover:text-lime-200/90 shadow">{playlist[currentTrack].title}</h2>
+        <div className="flex gap-2 mt-2 w-full pb-1">
           {playlist.map((track, idx) => (
             <button
               key={track.title}
-              className={`flex-1 h-2 rounded-full ${idx === currentTrack ? 'bg-lime-500/60' : 'bg-gray-300/60'}`}
+              className={`flex-1 h-2 rounded-full ${idx === currentTrack ? 'bg-lime-500/60 shadow' : 'bg-white/60 shadow'}`}
               onClick={() => { setCurrentTrack(idx); setIsPlaying(true); setTimeout(() => audioRef.current.play(), 100); }}
               aria-label={`Go to track ${track.title}`}
             />
           ))}
         </div>
+        <p className="text-sm text-white/60 hover:text-lime-200/60">change the radio station above</p>  
       </div>
     </div>
   );

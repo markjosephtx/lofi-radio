@@ -1,3 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Geo:ital@0;1&display=swap');
 @import "tailwindcss";
 
+@theme {
+    --dim-green-glow: 0px 0px 1px #65a30d, 0px 0px 10px  #65a30d;
+    --green-glow-drop-shadow: drop-shadow(0px 0px 2px #65a30d)drop-shadow(0px 0px 8px #bef264);
+    --green-glow-small: 0px 0px 1px #65a30d, 0px 0px 2px #65a30d, 0px 0px 10px #bef264;
+    --green-glow: 0px 0px 2px #65a30d, 0px 0px 15px #65a30d, 0px 0px 60px #bef264;
+}
+
+.shadow {
+    filter: var(--green-glow-drop-shadow);
+}
+
+.shadow-small {
+    filter: var(--green-glow-small);
+}
