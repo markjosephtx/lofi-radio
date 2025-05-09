@@ -3,31 +3,6 @@ import playlist from './assets/playlist.json';
 import './App.css';
 import { FaPlay, FaPause, FaAnglesLeft, FaAnglesRight } from "react-icons/fa6";
 
-
-
-const backgrounds = [
-  {
-    name: 'Cafe',
-    url: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80',
-  },
-  {
-    name: 'Night',
-    url: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80',
-  },
-  {
-    name: 'Study',
-    url: 'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=1200&q=80',
-  },
-  {
-    name: 'Food',
-    url: 'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=1200&q=80',
-  },
-  {
-    name: 'Day',
-    url: 'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=1200&q=80',
-  },
-];
-
 function App() {
   const [currentTrack, setCurrentTrack] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
