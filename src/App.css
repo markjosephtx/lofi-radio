@@ -48,6 +48,15 @@
   pointer-events: none;
   opacity: 0.4;
   animation: moveDownAnimation 150s linear infinite;
+  
+}
+@keyframes moveDownAnimation {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(100%);
+  }
 }
 
 #darken {
