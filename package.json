@@ -1,16 +1,24 @@
 {
-  "name": "lofi-cafe-clone",
-  "private": true,
+  "name": "lofi-cafe",
+  "homepage": "https://markjosephtx.github.io/lofi-cafe/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/markjosephtx/lofi-radio.git"
+  },
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist --repo https://github.com/markjosephtx/lofi-radio.git",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
+
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.6",
+    "gh-pages": "^6.3.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-icons": "^5.5.0"
