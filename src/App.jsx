@@ -1,9 +1,14 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import playlist from './assets/playlist.json';
 import './App.css';
 import { FaPlay, FaPause, FaAnglesLeft, FaAnglesRight } from "react-icons/fa6";
 import { PiDotsThreeBold } from "react-icons/pi";
-import { CgLoadbarSound } from "react-icons/cg";
+import beats1 from './assets/images/beats1.svg';
+import beats2 from './assets/images/beats2.svg';
+import beats3 from './assets/images/beats3.svg';
+import beats4 from './assets/images/beats4.svg';
+
+const beats = [beats1, beats2, beats3, beats4];
 
 function App() {
   const [currentTrack, setCurrentTrack] = useState(0);
@@ -40,6 +45,17 @@ function App() {
     setVolume(e.target.value);
     audioRef.current.volume = e.target.value;
   };
+
+  const [currentBeat, setCurrentBeat] = useState(1);
+
+  useEffect(() => {
+    if (isPlaying) {
+      const interval = setInterval(() => {
+        setCurrentBeat((prev) => (prev % 4) + 1); // Cycle through 1 to 4
+      }, 500); // Adjust the interval as needed
+      return () => clearInterval(interval);
+    }
+  }, [isPlaying]);
 
   return (
     <div
@@ -83,12 +99,19 @@ function App() {
           onChange={handleVolume}
           className="w-full mb-2 accent-white shadow hidden sm:block"
         />
-        <div className='flex flex-row items-center gap-1 pb-3'>
+        <div className='flex flex-row items-center gap-2 pb-3'>
         <button
             className="text-2xl py-1 bg-transparent border-none"
             onClick={handlePlayPause}
             aria-label={isPlaying ? 'Pause' : 'Play'}
-          >{isPlaying ? <CgLoadbarSound size={24} className="text-lime-300/60 hover:text-white/60 shadow" /> : <PiDotsThreeBold size={22} className="text-white/60 hover:text-lime-200/60 shadow" /> }</button>
+          >{isPlaying ? 
+          <img
+            src={beats[currentBeat - 1]}
+            alt="Beats Animation"
+            className="w-5 h-5 transition-transform duration-100 ease-in-out shadow"
+            style={{ transform: isPlaying ? 'scale(1)' : 'scale(1)' }}
+          />
+          : <PiDotsThreeBold size={22} className="text-white/60 hover:text-lime-200/60 shadow" /> }</button>
           <h2 className="font-semibold text-white hover:text-lime-200/90 shadow lg:text-xl text-lg/4">{playlist[currentTrack].title}</h2>
         </div>
         <div className="flex gap-2 mt-2 w-full pb-1">
