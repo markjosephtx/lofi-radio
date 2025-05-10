@@ -26,6 +26,16 @@ function App() {
     setIsPlaying(!isPlaying);
   };
 
+  const handleStationChange = (newTrackIndex) => {
+    const currentTime = audioRef.current.currentTime; // Get the current playback time
+    setCurrentTrack(newTrackIndex); // Change the track
+    setTimeout(() => {
+      audioRef.current.currentTime = currentTime; // Resume from the same time
+      audioRef.current.play(); // Automatically play the new track
+      setIsPlaying(true); // Update the play button state
+    }, 100); // Small delay to ensure the track is loaded
+  };
+
   const handleNext = () => {
     setCurrentTrack((prev) => (prev + 1) % playlist.length);
     setIsPlaying(true);
@@ -112,12 +122,15 @@ function App() {
       <div id="vignette"></div>
       <div id="top-ui" className="flex-1 lg:pl-10 pl-6 lg:pt-10 pt-6 lg:pb-10 pb-10">
           <div className="flex flex-row items-start gap-2">
-            <p className='text-white/90 hover:text-lime-200/60 shadow text-lg'>listening now <span className='text-2xl'>{visitorCount}</span></p>
-            <p className='text-white/90 hover:text-lime-200/60 shadow text-3xl animate-ping'>•</p>
+            <p className='text-white/90 hover:text-lime-200/60 shadow-red text-lg'>listening now <span className='text-2xl'>{visitorCount}</span></p>
+            <p className='text-white/90 hover:text-lime-200/60 shadow-red text-3xl animate-ping'>•</p>
           </div>
       </div>
 
-      <div className="lg:w-[400px] w-[320px] flex flex-col items-left lg:pl-10 pl-6 lg:pb-10 pb-10 z-6 gap-2">
+      <div
+      className="lg:w-[400px] w-[320px] flex flex-col items-left lg:pl-10 pl-6 lg:pb-10 pb-24 z-10 gap-2"
+      onClick={(e) => e.stopPropagation()} // Prevent click propagation
+      >
         <audio
           ref={audioRef}
           src={playlist[currentTrack].url}
@@ -169,9 +182,8 @@ function App() {
           {playlist.map((track, idx) => (
             <button
               key={track.title}
-              className={`lg;flex-1 w-12 h-2 rounded-full ${idx === currentTrack ? 'bg-lime-500/60 shadow' : 'bg-white/60 shadow'}`}
-              onClick={() => { setCurrentTrack(idx); setIsPlaying(true); setTimeout(() => audioRef.current.play(), 100); }}
-              aria-label={`Go to track ${track.title}`}
+              className={`lg;flex-1 w-12 h-2 rounded-full ${idx === currentTrack ? 'bg-lime-500/60 shadow animate-bounce' : 'bg-white/60 shadow'}`}
+              onClick={() => { handleStationChange(idx)}}
             />
           ))}
         </div>

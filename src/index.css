@@ -6,12 +6,17 @@
     --green-glow-drop-shadow: drop-shadow(0px 0px 2px #65a30d)drop-shadow(0px 0px 8px #bef264);
     --green-glow-small: 0px 0px 1px #65a30d, 0px 0px 2px #65a30d, 0px 0px 10px #bef264;
     --green-glow: 0px 0px 2px #65a30d, 0px 0px 15px #65a30d, 0px 0px 60px #bef264;
+    --red-glow: 0px 0px 1px #fecaca, 0px 0px 2px #fecaca,0px 0px 15px #ef4444, 0px 0px 60px #ef4444;
 }
 
 .shadow {
     filter: var(--green-glow-drop-shadow);
 }
 
-.shadow-small {
-    filter: var(--green-glow-small);
+.green-box-small {
+    text-shadow: var(--green-glow-small);
+}
+
+.shadow-red {
+    text-shadow: var(--red-glow);
 }
