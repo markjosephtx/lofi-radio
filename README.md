@@ -9,7 +9,7 @@ Features:
   3. Lofi vibes
   4. Responsive application
 
-try this website at [Lofi.radio](markjosephtx.github.io/lofi-radio/)
+try this website at [Lofi.radio](https://markjosephtx.github.io/lofi-radio/)
 
 ![http://markjosephtx.com/wp-content/uploads/2025/05/lofi.radio_.screenshot.png?auto=format&auto=compress](http://markjosephtx.com/wp-content/uploads/2025/05/lofi.radio_.screenshot.png?auto=format&auto=compress)
 
