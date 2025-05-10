@@ -13,7 +13,7 @@ This Player will give you vibes during coding
 Clone from Github
 
 ```
-git clone https://github.com/markjosephtx/dashboard-vite-react-tailwind.git
+git clone https://github.com/markjosephtx/lofi-radio.git
 ```
 
 ## Features
