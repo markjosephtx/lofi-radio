@@ -1,38 +1,23 @@
 #root {
   font-family: Geo;
+  background-color: black;
 }
 
-.logo {
-  
-}
-.logo:hover {
-
-}
-.logo.react:hover {
-
+.radio-container {
+  animation: crtAnimation 1.2s 0.2s both;
+  animation-timing-function: cubic-bezier(0.2, -0.1, 0, 1);
+  overflow: hidden;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+@keyframes crtAnimation {
+  0% {
+    transform: scaleY(0) scaleX(0);
+    filter: brightness(15) blur(0px);
   }
-  to {
-    transform: rotate(360deg);
+  20% {
+    transform: scaleY(0.02) scaleX(0.8);
+    filter: brightness(15) blur(0px);
   }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    
-  }
-}
-
-.card {
-  
-}
-
-.read-the-docs {
-  
 }
 
 #crt-lines {
@@ -51,11 +36,8 @@
   
 }
 @keyframes moveDownAnimation {
-  0% {
-    transform: translateY(0);
-  }
   100% {
-    transform: translateY(100%);
+    background-position-y: 100%;
   }
 }
 

@@ -59,7 +59,7 @@ function App() {
 
   return (
     <div
-      className="min-h-screen w-full flex items-end justify-left bg-cover bg-center transition-all duration-700"
+      className="radio-container min-h-screen w-full flex items-end justify-left bg-cover bg-center transition-all duration-700"
       style={{ backgroundImage: `url(${playlist[currentTrack].cover})` }}
     >
       <div id="crt-lines"></div>
