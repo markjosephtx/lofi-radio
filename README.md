@@ -1,35 +1,16 @@
-# React + Vite
+# Lofi Radio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Online lofi music player for work, study and relax. Lofi Cafe is a complete client side application, only uses youtube data api.
+This Player will give you vibes during coding 
 
-Currently, two official plugins are available:
+Features:
+  1. Interactive audio player
+  2. Interchangeable stations
+  3. Lofi vibes
+  4. Responsive application
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+try this website at markjosephtx.github.io/lofi-radio/
 
-## Expanding the ESLint configuration
+![](http://markjosephtx.com/wp-content/uploads/2025/05/lofi.radio_.screenshot.png?auto=format&auto=compress)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
 
-# Lofi Cafe Clone
-
-A web app inspired by [lofi.cafe](https://www.lofi.cafe/), built with React (Vite) and TailwindCSS.
-
-## Features
-- Lofi music player with curated tracks
-- Multiple backgrounds/rooms
-- Modern, responsive design
-
-## Getting Started
-1. Install dependencies:
-   ```bash
-   npm install
-   ```
-2. Start the development server:
-   ```bash
-   npm run dev
-   ```
-
----
-
-This project is for educational/demo purposes only. Please use royalty-free or your own music tracks.
