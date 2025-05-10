@@ -15,6 +15,7 @@ function App() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [volume, setVolume] = useState(0.7);
   const audioRef = useRef(null);
+  const [visitorCount, setVisitorCount] = useState(0);
 
   const handlePlayPause = () => {
     if (isPlaying) {
@@ -57,14 +58,64 @@ function App() {
     }
   }, [isPlaying]);
 
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.code === 'Space') {
+        event.preventDefault(); // Prevent default scrolling behavior
+        handlePlayPause();
+      }
+    };
+  
+    window.addEventListener('keydown', handleKeyDown);
+  
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown); // Cleanup on component unmount
+    };
+  }, [handlePlayPause]);
+
+  useEffect(() => {
+    // Simulate a new visitor joining every 5 seconds
+    const interval = setInterval(() => {
+      setVisitorCount((prevCount) => prevCount + 1);
+    }, 5000);
+
+    return () => clearInterval(interval); // Cleanup on component unmount
+  }, []);
+
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.code === 'ArrowLeft') {
+        handlePrev(); // Trigger the previous track
+      } else if (event.code === 'ArrowRight') {
+        handleNext(); // Trigger the next track
+      } else if (event.code === 'Space') {
+        event.preventDefault(); // Prevent default scrolling behavior
+        handlePlayPause(); // Toggle play/pause
+      }
+    };
+  
+    window.addEventListener('keydown', handleKeyDown);
+  
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown); // Cleanup on component unmount
+    };
+  }, [handlePrev, handleNext, handlePlayPause]);
+
   return (
     <div
-      className="radio-container min-h-screen w-full flex items-end justify-left bg-cover bg-center transition-all duration-700"
-      style={{ backgroundImage: `url(${playlist[currentTrack].cover})` }}
-    >
+    className="radio-container min-h-screen w-full flex flex-col items-start justify-left bg-cover bg-center transition-all duration-700"
+    style={{ backgroundImage: `url(${playlist[currentTrack].cover})` }}
+    onClick={handlePlayPause} // Add this onClick handler
+  >
       <div id="crt-lines"></div>
       <div id="darken"></div>
       <div id="vignette"></div>
+      <div id="top-ui" className="flex-1 lg:pl-10 pl-6 lg:pt-10 pt-6 lg:pb-10 pb-10">
+          <div className="flex flex-row items-start gap-2">
+            <p className='text-white/90 hover:text-lime-200/60 shadow text-lg'>listening now <span className='text-2xl'>{visitorCount}</span></p>
+            <p className='text-white/90 hover:text-lime-200/60 shadow text-3xl animate-ping'>•</p>
+          </div>
+      </div>
 
       <div className="lg:w-[400px] w-[320px] flex flex-col items-left lg:pl-10 pl-6 lg:pb-10 pb-10 z-6 gap-2">
         <audio
