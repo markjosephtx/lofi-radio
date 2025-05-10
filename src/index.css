@@ -7,6 +7,7 @@
     --green-glow-small: 0px 0px 1px #65a30d, 0px 0px 2px #65a30d, 0px 0px 10px #bef264;
     --green-glow: 0px 0px 2px #65a30d, 0px 0px 15px #65a30d, 0px 0px 60px #bef264;
     --red-glow: 0px 0px 1px #fecaca, 0px 0px 2px #fecaca,0px 0px 15px #ef4444, 0px 0px 60px #ef4444;
+    --blue-glow: 0px 0px 1px #06b6d4, 0px 0px 2px #06b6d4,0px 0px 15px #bae6fd, 0px 0px 60px #bae6fd;
 }
 
 .shadow {
@@ -19,4 +20,8 @@
 
 .shadow-red {
     text-shadow: var(--red-glow);
+}
+
+.shadow-blue {
+    text-shadow: var(--blue-glow);
 }

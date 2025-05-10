@@ -3,6 +3,11 @@ import playlist from './assets/playlist.json';
 import './App.css';
 import { FaPlay, FaPause, FaAnglesLeft, FaAnglesRight } from "react-icons/fa6";
 import { PiDotsThreeBold } from "react-icons/pi";
+import { LuGithub } from "react-icons/lu";
+import { FiInfo } from "react-icons/fi";
+
+
+
 import beats1 from './assets/images/beats1.svg';
 import beats2 from './assets/images/beats2.svg';
 import beats3 from './assets/images/beats3.svg';
@@ -113,22 +118,30 @@ function App() {
 
   return (
     <div
-    className="radio-container min-h-screen w-full flex flex-col items-start justify-left bg-cover bg-center transition-all duration-700"
+    className="radio-container min-h-screen w-full flex justify-between flex-col items-start justify-left bg-cover bg-center transition-all duration-700"
     style={{ backgroundImage: `url(${playlist[currentTrack].cover})` }}
     onClick={handlePlayPause} // Add this onClick handler
   >
       <div id="crt-lines"></div>
       <div id="darken"></div>
       <div id="vignette"></div>
-      <div id="top-ui" className="flex-1 lg:pl-10 pl-6 lg:pt-10 pt-6 lg:pb-10 pb-10">
-          <div className="flex flex-row items-start gap-2">
-            <p className='text-white/90 hover:text-lime-200/60 shadow-red text-lg'>listening now <span className='text-2xl'>{visitorCount}</span></p>
-            <p className='text-white/90 hover:text-lime-200/60 shadow-red text-3xl animate-ping'>•</p>
-          </div>
+      <div id="top-ui" className="flex flex-row w-full items-center justify-between lg:px-10 px-6 lg:pt-10 pt-6 lg:pb-10 pb-10 z-10" onClick={(e) => e.stopPropagation()}>
+        <div className="flex-1 flex flex-row items-start gap-2">
+          <p className='text-white/30 hover:text-red-200/60 shadow-red text-lg'>listening now <span className='text-2xl'>{visitorCount}</span></p>
+          <p className='text-white/30 hover:text-red-200/60 shadow-red text-3xl animate-ping'>•</p>
+        </div>
+        <div className="flex flex-row items-center gap-2">
+        <a href="https://github.com/markjosephtx/lofi-radio" target="_blank" rel="noopener noreferrer" className="px-1 py-1">
+      <LuGithub size={24} className="text-white/60 hover:text-lime-200/60 shadow" />
+    </a>
+    <a href="https://markjoseph.dev" target="_blank" rel="noopener noreferrer" className="px-1 py-1">
+      <FiInfo size={24} className="text-white/60 hover:text-lime-200/60 shadow" />
+    </a>
+        </div>
       </div>
 
       <div
-      className="lg:w-[400px] w-[320px] flex flex-col items-left lg:pl-10 pl-6 lg:pb-10 pb-24 z-10 gap-2"
+      className="lg:w-[400px] w-[320px] flex flex-col items-left lg:pl-10 pl-6 lg:pb-10 pb-[10vh] z-10 gap-2"
       onClick={(e) => e.stopPropagation()} // Prevent click propagation
       >
         <audio
