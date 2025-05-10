@@ -1,27 +1,29 @@
 [
   {
     "title": "Escape Radio // Lofi Beats",
-    "url": "http://markjosephtx.com/wp-content/uploads/2025/05/hope-emotional-soundtrack.mp3",
+    "url": "https://lofi-radio.s3.us-east-2.amazonaws.com/audio/lofi-hip-hop-radio-hip-hop-beats.mp3",
     "cover": "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZHJqYWZvNmlpbnZkOTcyMDNnb3Q0ZHA1OXQzYjF4MHR6M2xoeW1laCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/CW16nFVXLSQxSMUEMd/giphy.gif"
   },
   {
     "title": "Lofi Drive Radio // Lofi Hip Hop Beats",
-    "url": "http://markjosephtx.com/wp-content/uploads/2025/05/late-night-sample.mp3",
+    "url": "https://lofi-radio.s3.us-east-2.amazonaws.com/audio/lofi-drive-radio-hip-hop-beats.mp3",
     "cover": "https://i.gifer.com/PPy.gif"
   },
   {
     "title": "Lofi Chill Radio // Lofi Jazz Beats",
-    "url": "https://cdn.pixabay.com/audio/2022/11/16/audio_12f3b9b0b7.mp3",
+    "url": "https://lofi-radio.s3.us-east-2.amazonaws.com/audio/lofi-chill-radio-jazz-beats.mp3",
     "cover": "https://i.gifer.com/xK.gif"
   },
   {
     "title": "Lofi Hip Hop Radio // Lofi Hip Hop Beats",
-    "url": "https://cdn.pixabay.com/audio/2022/11/16/audio_12f3b9b0b7.mp3",
+    "url": "https://lofi-radio.s3.us-east-2.amazonaws.com/audio/lofi-escape-radio-relax-study-beats.mp3 ",
     "cover": "https://i.gifer.com/g3Ys.gif"
   },
   {
     "title": "Lofi Study Radio // Lofi Ambient Beats",
-    "url": "https://cdn.pixabay.com/audio/2022/11/16/audio_12f3b9b0b7.mp3",
+    "url": "https://lofi-radio.s3.us-east-2.amazonaws.com/audio/Lofi-study-beats-lofi-ambient-beats.mp3",
     "cover": "https://i.gifer.com/TFJn.gif"
   }
 ]
+
+
