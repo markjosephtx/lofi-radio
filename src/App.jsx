@@ -118,7 +118,7 @@ function App() {
 
   return (
     <div
-    className="radio-container min-h-screen w-full flex justify-between flex-col items-start justify-left bg-cover bg-center transition-all duration-700"
+    className="radio-container h-svh w-full flex justify-between flex-col items-start justify-left bg-cover bg-center transition-all duration-700"
     style={{ backgroundImage: `url(${playlist[currentTrack].cover})` }}
     onClick={handlePlayPause} // Add this onClick handler
   >
@@ -141,7 +141,7 @@ function App() {
       </div>
 
       <div
-      className="lg:w-[400px] w-[320px] flex flex-col items-left lg:pl-10 pl-6 lg:pb-10 pb-[10vh] z-10 gap-2"
+      className="lg:w-[400px] w-[320px] flex flex-col items-left lg:pl-10 pl-6 lg:pb-10 pb-10 z-10 gap-2"
       onClick={(e) => e.stopPropagation()} // Prevent click propagation
       >
         <audio
