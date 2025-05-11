@@ -141,7 +141,7 @@ function App() {
       </div>
 
       <div
-      className="lg:w-[400px] w-[320px] flex flex-col items-left lg:pl-10 pl-6 lg:pb-10 pb-10 z-10 gap-2"
+      className="lg:w-[400px] w-[320px] flex flex-col items-left lg:pl-10 pl-6 lg:pb-10 pb-6 z-6 gap-2"
       onClick={(e) => e.stopPropagation()} // Prevent click propagation
       >
         <audio
