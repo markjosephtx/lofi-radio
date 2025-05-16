@@ -42,15 +42,23 @@ function App() {
   };
 
   const handleNext = () => {
-    setCurrentTrack((prev) => (prev + 1) % playlist.length);
-    setIsPlaying(true);
-    setTimeout(() => audioRef.current.play(), 100);
+    const currentTime = audioRef.current.currentTime; // Get the current playback time
+    setCurrentTrack((prev) => (prev + 1) % playlist.length); // Change to the next track
+    setTimeout(() => {
+      audioRef.current.currentTime = currentTime; // Resume from the same time
+      audioRef.current.play(); // Automatically play the new track
+      setIsPlaying(true); // Update the play button state
+    }, 100); // Small delay to ensure the track is loaded
   };
-
+  
   const handlePrev = () => {
-    setCurrentTrack((prev) => (prev - 1 + playlist.length) % playlist.length);
-    setIsPlaying(true);
-    setTimeout(() => audioRef.current.play(), 100);
+    const currentTime = audioRef.current.currentTime; // Get the current playback time
+    setCurrentTrack((prev) => (prev - 1 + playlist.length) % playlist.length); // Change to the previous track
+    setTimeout(() => {
+      audioRef.current.currentTime = currentTime; // Resume from the same time
+      audioRef.current.play(); // Automatically play the new track
+      setIsPlaying(true); // Update the play button state
+    }, 100); // Small delay to ensure the track is loaded
   };
 
   const handleEnded = () => {
