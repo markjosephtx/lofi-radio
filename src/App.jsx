@@ -5,7 +5,25 @@ import { FaPlay, FaPause, FaAnglesLeft, FaAnglesRight } from "react-icons/fa6";
 import { PiDotsThreeBold } from "react-icons/pi";
 import { LuGithub } from "react-icons/lu";
 import { FiInfo } from "react-icons/fi";
+import { getDatabase, ref, runTransaction, get } from 'firebase/database';
+import { initializeApp } from 'firebase/app';
 
+
+
+// Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyCOix2-av1wjoQhHPcPN1nLwITdrTP8eJU",
+  authDomain: "lofi-radio-ac16f.firebaseapp.com",
+  databaseURL: "https://lofi-radio-ac16f-default-rtdb.firebaseio.com",
+  projectId: "lofi-radio-ac16f",
+  storageBucket: "lofi-radio-ac16f.firebasestorage.app",
+  messagingSenderId: "837292856301",
+  appId: "1:837292856301:web:e6435967f2649e13fa0de4"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
 
 
 import beats1 from './assets/images/beats1.svg';
@@ -97,15 +115,6 @@ function App() {
   }, [handlePlayPause]);
 
   useEffect(() => {
-    // Simulate a new visitor joining every 5 seconds
-    const interval = setInterval(() => {
-      setVisitorCount((prevCount) => prevCount + 1);
-    }, 5000);
-
-    return () => clearInterval(interval); // Cleanup on component unmount
-  }, []);
-
-  useEffect(() => {
     const handleKeyDown = (event) => {
       if (event.code === 'ArrowLeft') {
         handlePrev(); // Trigger the previous track
@@ -123,6 +132,23 @@ function App() {
       window.removeEventListener('keydown', handleKeyDown); // Cleanup on component unmount
     };
   }, [handlePrev, handleNext, handlePlayPause]);
+
+  useEffect(() => {
+    const countRef = ref(db, 'visits');
+
+    // Increment visit count
+    runTransaction(countRef, (currentCount) => {
+      return (currentCount || 0) + 1;
+    });
+
+    // Fetch count to display
+    get(countRef).then((snapshot) => {
+      if (snapshot.exists()) {
+        setVisitorCount(snapshot.val());
+      }
+    });
+  }, []);
+  
 
   return (
     <div
