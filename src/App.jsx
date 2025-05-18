@@ -135,18 +135,20 @@ function App() {
 
   useEffect(() => {
     const countRef = ref(db, 'visits');
-
-    // Increment visit count
+  
+    // Increment visit count and fetch updated value
     runTransaction(countRef, (currentCount) => {
-      return (currentCount || 0) + 1;
-    });
-
-    // Fetch count to display
-    get(countRef).then((snapshot) => {
-      if (snapshot.exists()) {
-        setVisitorCount(snapshot.val());
-      }
-    });
+      return (currentCount || 0) + 1; // Increment the count
+    })
+      .then((result) => {
+        if (result.committed) {
+          // Update the visitor count after the transaction completes
+          setVisitorCount(result.snapshot.val());
+        }
+      })
+      .catch((error) => {
+        console.error('Transaction failed: ', error);
+      });
   }, []);
   
 
