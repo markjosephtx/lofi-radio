@@ -5,7 +5,7 @@ import { FaPlay, FaPause, FaAnglesLeft, FaAnglesRight } from "react-icons/fa6";
 import { PiDotsThreeBold } from "react-icons/pi";
 import { LuGithub } from "react-icons/lu";
 import { FiInfo } from "react-icons/fi";
-import { getDatabase, ref, runTransaction, get } from 'firebase/database';
+import { getDatabase, ref, runTransaction, onValue } from 'firebase/database';
 import { initializeApp } from 'firebase/app';
 
 
@@ -136,19 +136,22 @@ function App() {
   useEffect(() => {
     const countRef = ref(db, 'visits');
   
-    // Increment visit count and fetch updated value
+    // Increment visit count
     runTransaction(countRef, (currentCount) => {
       return (currentCount || 0) + 1; // Increment the count
-    })
-      .then((result) => {
-        if (result.committed) {
-          // Update the visitor count after the transaction completes
-          setVisitorCount(result.snapshot.val());
-        }
-      })
-      .catch((error) => {
-        console.error('Transaction failed: ', error);
-      });
+    }).catch((error) => {
+      console.error('Transaction failed: ', error);
+    });
+  
+    // Listen for live updates to the visitor count
+    const unsubscribe = onValue(countRef, (snapshot) => {
+      if (snapshot.exists()) {
+        setVisitorCount(snapshot.val()); // Update the visitor count in real-time
+      }
+    });
+  
+    // Cleanup the listener on component unmount
+    return () => unsubscribe();
   }, []);
   
 
